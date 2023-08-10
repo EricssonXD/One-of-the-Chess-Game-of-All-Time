@@ -10,11 +10,19 @@ config_version=5
 
 [application]
 
-config/name="Godot Chess"
-run/main_scene="res://board.tscn"
-config/features=PackedStringArray("4.1", "Forward Plus")
+config/name="One of the Games of All Time"
+run/main_scene="res://game.tscn"
+config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
 
-[editor_plugins]
+[display]
 
-enabled=PackedStringArray("res://addons/Chess/plugin.cfg")
+window/size/viewport_width=128
+window/size/viewport_height=128
+window/size/window_width_override=512
+window/size/window_height_override=512
+window/stretch/mode="canvas_items"
+
+[rendering]
+
+renderer/rendering_method="mobile"

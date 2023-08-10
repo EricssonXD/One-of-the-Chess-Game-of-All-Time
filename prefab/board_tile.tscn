@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdo1afvbpv6i7"]
+
+[ext_resource type="Texture2D" uid="uid://ca1od886c34o3" path="res://icon.svg" id="1_5bbo3"]
+
+[node name="BoardTile" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.117, 0.117)
+texture = ExtResource("1_5bbo3")
+centered = false
