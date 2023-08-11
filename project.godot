@@ -10,8 +10,13 @@ config_version=5
 
 [application]
 
+<<<<<<< Updated upstream
 config/name="One of the Games of All Time"
 run/main_scene="res://chessBoard.tscn"
+=======
+config/name="Chess Games of All Time"
+run/main_scene="res://game.tscn"
+>>>>>>> Stashed changes
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
 
