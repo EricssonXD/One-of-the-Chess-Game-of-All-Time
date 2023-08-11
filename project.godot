@@ -10,15 +10,15 @@ config_version=5
 
 [application]
 
-<<<<<<< Updated upstream
 config/name="One of the Games of All Time"
-run/main_scene="res://chessBoard.tscn"
-=======
-config/name="Chess Games of All Time"
-run/main_scene="res://game.tscn"
->>>>>>> Stashed changes
+run/main_scene="res://prefab/chess/board.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+CONSTANTS="*res://scripts/misc/constants.gd"
+Global="*res://scripts/misc/Global.gd"
 
 [display]
 
@@ -27,6 +27,14 @@ window/size/viewport_height=128
 window/size/window_width_override=512
 window/size/window_height_override=512
 window/stretch/mode="canvas_items"
+
+[input]
+
+left_mouse_button={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(388, 22),"global_position":Vector2(392, 65),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
 
 [rendering]
 
