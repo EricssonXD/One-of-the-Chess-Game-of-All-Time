@@ -2,9 +2,11 @@
 
 [ext_resource type="Script" path="res://scripts/ui/drag_preview.gd" id="1_muu6v"]
 
-[node name="DragPreview" type="Sprite2D"]
-modulate = Color(1, 1, 1, 0.690196)
+[node name="DragPreview" type="TextureRect"]
+modulate = Color(1, 1, 1, 0.568627)
 z_index = 10
 z_as_relative = false
 texture_filter = 3
+mouse_filter = 2
+expand_mode = 2
 script = ExtResource("1_muu6v")

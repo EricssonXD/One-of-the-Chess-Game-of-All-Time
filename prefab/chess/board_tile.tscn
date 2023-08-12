@@ -1,56 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdo1afvbpv6i7"]
+[gd_scene load_steps=3 format=3 uid="uid://bdo1afvbpv6i7"]
 
 [ext_resource type="Script" path="res://scripts/chess/board_tile.gd" id="1_2ft6w"]
 [ext_resource type="Texture2D" uid="uid://ca1od886c34o3" path="res://icon.svg" id="1_5bbo3"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j3ghn"]
-size = Vector2(15, 15)
-
-[node name="BoardTile" type="Control"]
-layout_mode = 3
-anchors_preset = 0
+[node name="BoardTile" type="BoxContainer"]
+clip_contents = true
 mouse_filter = 2
 script = ExtResource("1_2ft6w")
 
-[node name="Piece" type="TextureRect" parent="."]
+[node name="Tile" type="TextureRect" parent="."]
 texture_filter = 1
 clip_contents = true
 layout_mode = 2
-offset_right = 15.0
-offset_bottom = 15.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-expand_mode = 1
+expand_mode = 2
 stretch_mode = 4
 
 [node name="DebugTile" type="TextureRect" parent="."]
 visible = false
+top_level = true
 texture_filter = 1
 clip_contents = true
-offset_right = 15.0
-offset_bottom = 15.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 0
 texture = ExtResource("1_5bbo3")
-expand_mode = 1
+expand_mode = 2
 stretch_mode = 4
-
-[node name="Area2D" type="Area2D" parent="."]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(7.5, 7.5)
-shape = SubResource("RectangleShape2D_j3ghn")
-
-[node name="debugSprite" type="Sprite2D" parent="Area2D/CollisionShape2D"]
-visible = false
-position = Vector2(-7.5, -7.5)
-scale = Vector2(0.117, 0.117)
-texture = ExtResource("1_5bbo3")
-centered = false
-region_enabled = true
-region_rect = Rect2(0, 0, 128, 128)
-region_filter_clip_enabled = true
 
 [connection signal="gui_input" from="DebugTile" to="." method="_on_debug_tile_gui_input"]

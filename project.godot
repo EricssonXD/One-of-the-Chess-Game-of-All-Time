@@ -18,15 +18,21 @@ config/icon="res://icon.svg"
 [autoload]
 
 CONSTANTS="*res://scripts/misc/constants.gd"
+PlayFabManager="*res://addons/godot-playfab/PlayFabManager.gd"
 Global="*res://scripts/misc/Global.gd"
+ChessGlobal="*res://scripts/misc/chess_global.gd"
 
 [display]
 
-window/size/viewport_width=128
-window/size/viewport_height=128
+window/size/viewport_width=1024
+window/size/viewport_height=1024
 window/size/window_width_override=512
 window/size/window_height_override=512
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot-playfab/plugin.cfg")
 
 [input]
 
@@ -35,6 +41,10 @@ left_mouse_button={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(388, 22),"global_position":Vector2(392, 65),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
+
+[playfab]
+
+title_id="3930F"
 
 [rendering]
 

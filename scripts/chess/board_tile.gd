@@ -1,8 +1,10 @@
-extends Control
+extends BoxContainer
 class_name ChessTile
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	custom_minimum_size = CONSTANTS.TILE_SIZE
+	update_minimum_size()
 	pass # Replace with function body.
 
 signal remove_piece
@@ -24,6 +26,8 @@ func _process(delta):
 	pass
 	
 func _can_drop_data(at_position, data):
+	var piece:ChessPiece = data["origin_node"]
+	
 	return true
 	
 func _drop_data(at_position, data):

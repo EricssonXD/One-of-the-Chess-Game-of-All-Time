@@ -6,10 +6,10 @@ var board = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	initTiles()
-	var debugPiece = load("res://prefab/chess/piece.tscn").instantiate().init(board[0][0])
+	var debugPiece = ChessGlobal.res_debugPiece.instantiate().init(board[0][0])
 	debugPiece.set_name(str("DebugPiece"))
 	add_child(debugPiece)
-	var debugPiece2 = load("res://prefab/chess/piece.tscn").instantiate().init(board[0][1]) 
+	var debugPiece2 = ChessGlobal.res_debugPiece.instantiate().init(board[0][1]) 
 	debugPiece2.set_name(str("DebugPiece2"))
 	add_child(debugPiece2)
 
@@ -17,7 +17,7 @@ func initTiles() -> void:
 	for y in range(CONSTANTS.BOARD_DIMENSIONS.y):
 		board.append([])
 		for x in range(CONSTANTS.BOARD_DIMENSIONS.x):
-			var new_tile = load("res://prefab/chess/board_tile.tscn").instantiate() 
+			var new_tile = ChessGlobal.res_boardTile.instantiate() 
 			new_tile.set_name(str("Tile ",x,"_",y))
 			new_tile.init(Vector2(x,y))
 			add_child(new_tile)
