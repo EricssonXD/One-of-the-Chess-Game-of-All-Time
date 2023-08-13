@@ -20,7 +20,7 @@ config/icon="res://icon.svg"
 CONSTANTS="*res://scripts/misc/constants.gd"
 PlayFabManager="*res://addons/godot-playfab/PlayFabManager.gd"
 Global="*res://scripts/misc/Global.gd"
-ChessGlobal="*res://scripts/misc/chess_global.gd"
+ChessGlobal="*res://scripts/chess/chess_global.gd"
 
 [display]
 

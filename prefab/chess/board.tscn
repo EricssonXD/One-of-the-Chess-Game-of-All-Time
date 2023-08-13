@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://trlpf3a84uhm"]
+[gd_scene load_steps=3 format=3 uid="uid://trlpf3a84uhm"]
 
 [ext_resource type="Script" path="res://scripts/chess/board.gd" id="1_2juv0"]
 [ext_resource type="Texture2D" uid="uid://dscxjpeyhgvp4" path="res://assets/board/board_empty.png" id="2_081x6"]
-[ext_resource type="Script" path="res://scripts/misc/board_sprite.gd" id="2_ikdx4"]
 
 [node name="ChessBoard" type="Node2D"]
 script = ExtResource("1_2juv0")
@@ -10,7 +9,6 @@ script = ExtResource("1_2juv0")
 [node name="BoxContainer" type="BoxContainer" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("2_ikdx4")
 
 [node name="board" type="TextureRect" parent="BoxContainer"]
 z_index = -1

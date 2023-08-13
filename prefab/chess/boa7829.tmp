@@ -4,8 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ca1od886c34o3" path="res://icon.svg" id="1_5bbo3"]
 [ext_resource type="Texture2D" uid="uid://btuj2owcgqfv0" path="res://downloadedAssets/set_regular/circle.png" id="2_vekey"]
 
-[node name="BoardTile" type="Container"]
-texture_filter = 1
+[node name="BoardTile" type="BoxContainer"]
 clip_contents = true
 mouse_filter = 2
 script = ExtResource("1_2ft6w")
@@ -19,18 +18,21 @@ size_flags_vertical = 3
 expand_mode = 2
 stretch_mode = 4
 
-[node name="ValidIndicator" type="TextureRect" parent="."]
-visible = false
-texture_filter = 1
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2
 texture = ExtResource("2_vekey")
-expand_mode = 2
 
 [node name="DebugTile" type="TextureRect" parent="."]
 visible = false
+top_level = true
 texture_filter = 1
+clip_contents = true
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 0
 texture = ExtResource("1_5bbo3")
 expand_mode = 2
+stretch_mode = 4
 
 [connection signal="gui_input" from="DebugTile" to="." method="_on_debug_tile_gui_input"]

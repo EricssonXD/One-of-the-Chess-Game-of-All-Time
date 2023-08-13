@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b08kak12ivn76"
-path="res://.godot/imported/knight.png-0187661f59a9a1eeae98fa792f1ccd2c.ctex"
+uid="uid://c7aopwm42wlyj"
+path="res://.godot/imported/king_with_gun_haha_funny_lmao_school_shoote.png-64279027f0eef80a2db2cd3c8d5d06a2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/pieces/white/knight.png"
-dest_files=["res://.godot/imported/knight.png-0187661f59a9a1eeae98fa792f1ccd2c.ctex"]
+source_file="res://assets/pieces/white/king_with_gun_haha_funny_lmao_school_shoote.png"
+dest_files=["res://.godot/imported/king_with_gun_haha_funny_lmao_school_shoote.png-64279027f0eef80a2db2cd3c8d5d06a2.ctex"]
 
 [params]
 

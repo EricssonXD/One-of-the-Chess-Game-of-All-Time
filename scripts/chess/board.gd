@@ -1,29 +1,32 @@
 extends Node2D
 class_name ChessBoard
 
-var board = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$BoxContainer.custom_minimum_size = CONSTANTS.TILE_SIZE * CONSTANTS.BOARD_DIMENSIONS + CONSTANTS.BOARD_OFFSET*2
 	initTiles()
-	var debugPiece = ChessGlobal.res_debugPiece.instantiate().init(board[0][0])
+	var debugPiece:ChessPiece = ChessGlobal.res_debugPiece.instantiate().init(ChessGlobal.board[Vector2(0,0)])
+	debugPiece.setPiece(load("res://scripts/chess/pieces/rook.gd"))
 	debugPiece.set_name(str("DebugPiece"))
 	add_child(debugPiece)
-	var debugPiece2 = ChessGlobal.res_debugPiece.instantiate().init(board[0][1]) 
+	var debugPiece2 = ChessGlobal.res_debugPiece.instantiate().init(ChessGlobal.board[Vector2(0,1)]) 
 	debugPiece2.set_name(str("DebugPiece2"))
 	add_child(debugPiece2)
 
 func initTiles() -> void:
 	for y in range(CONSTANTS.BOARD_DIMENSIONS.y):
-		board.append([])
 		for x in range(CONSTANTS.BOARD_DIMENSIONS.x):
 			var new_tile = ChessGlobal.res_boardTile.instantiate() 
 			new_tile.set_name(str("Tile ",x,"_",y))
 			new_tile.init(Vector2(x,y))
 			add_child(new_tile)
 			new_tile.global_position = Vector2(x, -y) * CONSTANTS.TILE_SIZE + CONSTANTS.BOARD_OFFSET + Vector2(0, CONSTANTS.BOARD_DIMENSIONS.y - 1) * CONSTANTS.TILE_SIZE
-			board[y].append(new_tile)
-			
+#			ChessGlobal.board[y].append(new_tile)
+			ChessGlobal.board[Vector2(x,y)] = new_tile
+	for i in ChessGlobal.board.values():
+		i.set_neighbouringTiles()
+		
 func snappedPosition(snapPos:Vector2)-> Vector2:
 	if (snapPos.x<=CONSTANTS.BOARD_OFFSET.x):
 		snapPos.x = CONSTANTS.BOARD_OFFSET.x + position.x
