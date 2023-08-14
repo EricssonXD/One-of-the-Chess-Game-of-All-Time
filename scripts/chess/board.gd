@@ -6,10 +6,13 @@ class_name ChessBoard
 func _ready():
 	$BoxContainer.custom_minimum_size = CONSTANTS.TILE_SIZE * CONSTANTS.BOARD_DIMENSIONS + CONSTANTS.BOARD_OFFSET*2
 	initTiles()
-	var debugPiece:ChessPiece = ChessGlobal.res_debugPiece.instantiate().init(ChessGlobal.board[Vector2(0,0)])
-	debugPiece.setPiece(load("res://scripts/chess/pieces/rook.gd"))
-	debugPiece.set_name(str("DebugPiece"))
-	add_child(debugPiece)
+	addPiece(Vector2(1,1),load("res://scripts/chess/pieces/rook.gd"))
+	addPiece(Vector2(1,1),load("res://scripts/chess/pieces/rook.gd"))
+	addPiece(Vector2(1,1),load("res://scripts/chess/pieces/rook.gd"))
+	var kingpiece:ChessPiece = ChessGlobal.res_debugPiece.instantiate().init(ChessGlobal.board[Vector2(3,0)])
+	kingpiece.setPiece(load("res://scripts/chess/pieces/king.gd"))
+	kingpiece.set_name(str("King"))
+	add_child(kingpiece)
 	var debugPiece2 = ChessGlobal.res_debugPiece.instantiate().init(ChessGlobal.board[Vector2(0,1)]) 
 	debugPiece2.set_name(str("DebugPiece2"))
 	add_child(debugPiece2)
@@ -39,6 +42,12 @@ func snappedPosition(snapPos:Vector2)-> Vector2:
 		snapPos.y = minf(snapPos.y, position.y + CONSTANTS.TILE_SIZE.y * CONSTANTS.BOARD_DIMENSIONS.y + CONSTANTS.BOARD_OFFSET.y - 1)
 		
 	return snapped(snapPos + CONSTANTS.BOARD_OFFSET, CONSTANTS.TILE_SIZE) - CONSTANTS.TILE_SIZE + CONSTANTS.BOARD_OFFSET + position
+
+func addPiece(cords:Vector2, script:Script):
+	var piece:ChessPiece = ChessGlobal.res_debugPiece.instantiate().init(ChessGlobal.board[cords])
+	piece.setPiece(script)
+#	piece.set_name(str("Rook"))
+	add_child(piece)	
 
 func _process(delta):
 	pass

@@ -1,11 +1,9 @@
 extends ChessPiece
 
 func get_valid_tiles():
-	var hitEdge = false
-	recur(onTile, Vector2(1,0))
-	recur(onTile, Vector2(-1,0))
-	recur(onTile, Vector2(0,1))
-	recur(onTile, Vector2(0,-1))
+	for i in onTile.neighbouringTiles.values():
+		if i != null:
+			setTileValid(i)
 	
 func recur(tile: ChessTile, direction: Vector2, blocked:bool = false):
 	if tile == null:
@@ -19,5 +17,5 @@ func recur(tile: ChessTile, direction: Vector2, blocked:bool = false):
 
 
 func setTexture():
-	$pieceSprite.texture = load("res://assets/pieces/white/normal/rook.png")
+	$pieceSprite.texture = load("res://assets/pieces/white/king_with_gun_haha_funny_lmao_school_shoote.png")
 	
