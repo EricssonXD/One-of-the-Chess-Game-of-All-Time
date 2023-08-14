@@ -1,21 +1,17 @@
 extends Node2D
 class_name ChessBoard
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$BoxContainer.custom_minimum_size = CONSTANTS.TILE_SIZE * CONSTANTS.BOARD_DIMENSIONS + CONSTANTS.BOARD_OFFSET*2
 	initTiles()
-	addPiece(Vector2(1,1),load("res://scripts/chess/pieces/rook.gd"))
-	addPiece(Vector2(1,1),load("res://scripts/chess/pieces/rook.gd"))
-	addPiece(Vector2(1,1),load("res://scripts/chess/pieces/rook.gd"))
-	var kingpiece:ChessPiece = ChessGlobal.res_debugPiece.instantiate().init(ChessGlobal.board[Vector2(3,0)])
-	kingpiece.setPiece(load("res://scripts/chess/pieces/king.gd"))
-	kingpiece.set_name(str("King"))
-	add_child(kingpiece)
-	var debugPiece2 = ChessGlobal.res_debugPiece.instantiate().init(ChessGlobal.board[Vector2(0,1)]) 
-	debugPiece2.set_name(str("DebugPiece2"))
-	add_child(debugPiece2)
+	addPiece(Vector2(0,0),load("res://scripts/chess/pieces/rook.gd"))
+	addPiece(Vector2(1,0),load("res://scripts/chess/pieces/knight.gd"))
+	addPiece(Vector2(2,0),load("res://scripts/chess/pieces/bishop.gd"))
+	addPiece(Vector2(3,0),load("res://scripts/chess/pieces/queen.gd"))
+	addPiece(Vector2(4,0),load("res://scripts/chess/pieces/king.gd"))
+	addPiece(Vector2(7,1),load("res://scripts/chess/pieces/pawn.gd"))
+	addPiece(Vector2(4,7))
 
 func initTiles() -> void:
 	for y in range(CONSTANTS.BOARD_DIMENSIONS.y):
@@ -29,7 +25,7 @@ func initTiles() -> void:
 			ChessGlobal.board[Vector2(x,y)] = new_tile
 	for i in ChessGlobal.board.values():
 		i.set_neighbouringTiles()
-		
+
 func snappedPosition(snapPos:Vector2)-> Vector2:
 	if (snapPos.x<=CONSTANTS.BOARD_OFFSET.x):
 		snapPos.x = CONSTANTS.BOARD_OFFSET.x + position.x
@@ -43,9 +39,10 @@ func snappedPosition(snapPos:Vector2)-> Vector2:
 		
 	return snapped(snapPos + CONSTANTS.BOARD_OFFSET, CONSTANTS.TILE_SIZE) - CONSTANTS.TILE_SIZE + CONSTANTS.BOARD_OFFSET + position
 
-func addPiece(cords:Vector2, script:Script):
+func addPiece(cords:Vector2, script:Script = null):
 	var piece:ChessPiece = ChessGlobal.res_debugPiece.instantiate().init(ChessGlobal.board[cords])
-	piece.setPiece(script)
+	if script != null:
+		piece.setPiece(script)
 #	piece.set_name(str("Rook"))
 	add_child(piece)	
 

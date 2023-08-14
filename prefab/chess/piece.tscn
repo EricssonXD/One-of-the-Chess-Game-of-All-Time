@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dy88qk3wa5jia"]
 
 [ext_resource type="Script" path="res://scripts/chess/piece.gd" id="1_4vhvq"]
-[ext_resource type="Texture2D" uid="uid://cq5eaq32wej31" path="res://assets/pieces/white/whores.png" id="2_7gm83"]
+[ext_resource type="Texture2D" uid="uid://w8556bb2bgom" path="res://assets/pieces/white/ches-criminal.png" id="2_nsild"]
 
 [node name="piece" type="Control"]
 show_behind_parent = true
@@ -17,5 +17,5 @@ script = ExtResource("1_4vhvq")
 [node name="pieceSprite" type="TextureRect" parent="."]
 texture_filter = 1
 layout_mode = 0
-texture = ExtResource("2_7gm83")
+texture = ExtResource("2_nsild")
 expand_mode = 2
