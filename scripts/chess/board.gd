@@ -5,13 +5,7 @@ class_name ChessBoard
 func _ready():
 	$BoxContainer.custom_minimum_size = CONSTANTS.TILE_SIZE * CONSTANTS.BOARD_DIMENSIONS + CONSTANTS.BOARD_OFFSET*2
 	initTiles()
-	addPiece(Vector2(0,0),load("res://scripts/chess/pieces/rook.gd"))
-	addPiece(Vector2(1,0),load("res://scripts/chess/pieces/knight.gd"))
-	addPiece(Vector2(2,0),load("res://scripts/chess/pieces/bishop.gd"))
-	addPiece(Vector2(3,0),load("res://scripts/chess/pieces/queen.gd"))
-	addPiece(Vector2(4,0),load("res://scripts/chess/pieces/king.gd"))
-	addPiece(Vector2(7,1),load("res://scripts/chess/pieces/pawn.gd"))
-	addPiece(Vector2(4,7))
+	setupBoard()
 
 func initTiles() -> void:
 	for y in range(CONSTANTS.BOARD_DIMENSIONS.y):
@@ -39,12 +33,30 @@ func snappedPosition(snapPos:Vector2)-> Vector2:
 		
 	return snapped(snapPos + CONSTANTS.BOARD_OFFSET, CONSTANTS.TILE_SIZE) - CONSTANTS.TILE_SIZE + CONSTANTS.BOARD_OFFSET + position
 
-func addPiece(cords:Vector2, script:Script = null):
-	var piece:ChessPiece = ChessGlobal.res_debugPiece.instantiate().init(ChessGlobal.board[cords])
+func addPiece(cords:Vector2, playerID:int,script:Script = null):
+	var piece:ChessPiece = ChessGlobal.res_debugPiece.instantiate().init(ChessGlobal.board[cords], playerID)
 	if script != null:
 		piece.setPiece(script)
 #	piece.set_name(str("Rook"))
 	add_child(piece)	
 
-func _process(delta):
+func _process(_delta):
 	pass
+	
+func setupBoard():
+	addPiece(Vector2(0,0),0,load("res://scripts/chess/pieces/rook.gd"))
+	addPiece(Vector2(1,0),0,load("res://scripts/chess/pieces/knight.gd"))
+	addPiece(Vector2(2,0),0,load("res://scripts/chess/pieces/bishop.gd"))
+	addPiece(Vector2(3,0),0,load("res://scripts/chess/pieces/queen.gd"))
+	addPiece(Vector2(4,0),0,load("res://scripts/chess/pieces/king.gd"))
+	addPiece(Vector2(7,1),0,load("res://scripts/chess/pieces/pawn.gd"))
+	addPiece(Vector2(4,7),1)
+	setupPromotionTiles()
+	
+func setupPromotionTiles():
+	for i in ChessGlobal.board.values():
+		if i.cords.y == 0:
+			i.promotion.append(1)
+			continue
+		if i.cords.y == CONSTANTS.BOARD_DIMENSIONS.y -1:
+			i.promotion.append(0)

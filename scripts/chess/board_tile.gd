@@ -1,11 +1,11 @@
 extends Container
 class_name ChessTile
 
-var cords
+var cords: Vector2
 var neighbouringTiles: Dictionary = {}
 var attackedBy: Dictionary = {}
-var piece
-
+var piece: ChessPiece
+var promotion: PackedInt32Array = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,7 +14,6 @@ func _ready():
 	$ValidIndicator.custom_minimum_size = custom_minimum_size
 	$DebugTile.custom_minimum_size = custom_minimum_size
 	update_minimum_size()
-	pass # Replace with function body.
 	
 func set_neighbouringTiles():
 	for x in [-1,0,1]:
@@ -31,20 +30,20 @@ func init(pos: Vector2):
 	cords = pos
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 	
-func _can_drop_data(at_position, data):
-	var piece:ChessPiece = data["origin_node"]
-	if self in piece.validTiles.values():
+func _can_drop_data(_at_position, data):
+	var cp:ChessPiece = data["origin_node"]
+	if self in cp.validTiles.values():
 		return true
 	return false
 	
-func _drop_data(at_position, data):
-	var piece:ChessPiece = data["origin_node"]
-	piece.hide_valid_indicators()
-	piece.position = getSnappedPosition()
-	piece.setOnTile(self)
+func _drop_data(_at_position, data):
+	var cp:ChessPiece = data["origin_node"]
+	cp.hide_valid_indicators()
+	cp.position = getSnappedPosition()
+	cp.setOnTile(self)
 
 func _on_debug_tile_gui_input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:

@@ -1,7 +1,6 @@
 extends ChessPiece
 
 func get_valid_tiles():
-	var hitEdge = false
 	for x in [-1,0,1]:
 		for y in [-1,0,1]:
 			if x == 0 and y == 0:

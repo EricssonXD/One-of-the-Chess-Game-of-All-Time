@@ -1,7 +1,6 @@
 extends ChessPiece
 
 func get_valid_tiles():
-	var hitEdge = false
 	recur(onTile, Vector2(1,0))
 	recur(onTile, Vector2(-1,0))
 	recur(onTile, Vector2(0,1))

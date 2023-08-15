@@ -5,9 +5,11 @@ var onTile:ChessTile
 var validTiles:Dictionary = {}
 var isDragging:bool = false
 var firstMove:bool = true
+var playerID:int 
 
-func init(tile):
+func init(tile, playerId):
 	setOnTile(tile)
+	self.playerID = playerId
 	position = onTile.getSnappedPosition()
 	return self
 	
@@ -19,7 +21,7 @@ func setPiece(pieceScript:Script):
 	setTexture()
 	update_valid_tiles()
 	
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_released("left_mouse_button"):
 		if isDragging:
 			hide_valid_indicators()
@@ -31,7 +33,9 @@ func _ready():
 #	update_minimum_size()
 	set_process_input(true)
 
-func _get_drag_data(at_position):
+func _get_drag_data(_at_position):
+	if ChessGlobal.playerTurn != playerID:
+		return null
 	isDragging = true
 	update_valid_tiles()
 	show_valid_indicators()
@@ -65,7 +69,10 @@ func get_valid_tiles():
 	for i in ChessGlobal.board.values():
 		setTileValid(i)
 
-func setTileValid(tile:ChessTile):
+func setTileValid(tile:ChessTile, friendlyFire:bool = false):
+	if tile.piece != null:
+		if tile.piece.playerID == playerID and !friendlyFire:
+			return
 	validTiles[tile.cords] = tile
 
 func show_valid_indicators():
