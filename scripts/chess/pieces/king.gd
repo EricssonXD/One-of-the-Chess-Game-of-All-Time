@@ -1,5 +1,9 @@
 extends ChessPiece
 
+func  _init():
+	super._init()
+	self.type = CONSTANTS.TYPE.King
+
 func get_valid_tiles():
 	for i in onTile.neighbouringTiles.values():
 		if i != null:

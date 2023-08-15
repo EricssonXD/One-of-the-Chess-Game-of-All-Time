@@ -1,5 +1,9 @@
 extends ChessPiece
 
+func  _init():
+	super._init()
+	self.type = CONSTANTS.TYPE.Knight
+	
 func get_valid_tiles():
 	const moves: PackedVector2Array = [
 		Vector2(2, 1),

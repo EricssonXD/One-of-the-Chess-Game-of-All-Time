@@ -6,6 +6,7 @@ var validTiles:Dictionary = {}
 var isDragging:bool = false
 var firstMove:bool = true
 var playerID:int 
+var type = CONSTANTS.TYPE.Debug
 
 func init(tile, playerId):
 	setOnTile(tile)
@@ -18,6 +19,7 @@ func setPiece(pieceScript:Script):
 	var _onTile = onTile # Remember tile
 	self.set_script(pieceScript)
 	self.onTile = _onTile
+	self.playerID = playerID
 	setTexture()
 	update_valid_tiles()
 	

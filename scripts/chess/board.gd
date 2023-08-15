@@ -33,24 +33,28 @@ func snappedPosition(snapPos:Vector2)-> Vector2:
 		
 	return snapped(snapPos + CONSTANTS.BOARD_OFFSET, CONSTANTS.TILE_SIZE) - CONSTANTS.TILE_SIZE + CONSTANTS.BOARD_OFFSET + position
 
-func addPiece(cords:Vector2, playerID:int,script:Script = null):
+func addPiece(cords:Vector2, playerID:int,script:Script = null) -> ChessPiece:
 	var piece:ChessPiece = ChessGlobal.res_debugPiece.instantiate().init(ChessGlobal.board[cords], playerID)
 	if script != null:
 		piece.setPiece(script)
 #	piece.set_name(str("Rook"))
-	add_child(piece)	
+	add_child(piece)
+	return piece
 
 func _process(_delta):
 	pass
 	
 func setupBoard():
+	# White Pieces
 	addPiece(Vector2(0,0),0,load("res://scripts/chess/pieces/rook.gd"))
 	addPiece(Vector2(1,0),0,load("res://scripts/chess/pieces/knight.gd"))
 	addPiece(Vector2(2,0),0,load("res://scripts/chess/pieces/bishop.gd"))
 	addPiece(Vector2(3,0),0,load("res://scripts/chess/pieces/queen.gd"))
 	addPiece(Vector2(4,0),0,load("res://scripts/chess/pieces/king.gd"))
 	addPiece(Vector2(7,1),0,load("res://scripts/chess/pieces/pawn.gd"))
+	# Black Pieces
 	addPiece(Vector2(4,7),1)
+	addPiece(Vector2(7,6),1,load("res://scripts/chess/pieces/pawn.gd")).forward = -1
 	setupPromotionTiles()
 	
 func setupPromotionTiles():

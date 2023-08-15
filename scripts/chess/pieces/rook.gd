@@ -1,5 +1,9 @@
 extends ChessPiece
 
+func  _init():
+	super._init()
+	self.type = CONSTANTS.TYPE.Rook
+	
 func get_valid_tiles():
 	recur(onTile, Vector2(1,0))
 	recur(onTile, Vector2(-1,0))

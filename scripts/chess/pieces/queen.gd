@@ -1,5 +1,9 @@
 extends ChessPiece
 
+func  _init():
+	super._init()
+	self.type = CONSTANTS.TYPE.Queen
+
 func get_valid_tiles():
 	for x in [-1,0,1]:
 		for y in [-1,0,1]:
