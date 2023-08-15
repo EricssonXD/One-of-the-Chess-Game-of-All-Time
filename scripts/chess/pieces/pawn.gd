@@ -1,7 +1,5 @@
 extends ChessPiece
 
-var firstMove: bool = true
-
 func get_valid_tiles():
 	var tile = onTile.neighbouringTiles[Vector2(0,1)]
 	if tile!= null:

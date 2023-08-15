@@ -4,6 +4,7 @@ class_name ChessPiece
 var onTile:ChessTile
 var validTiles:Dictionary = {}
 var isDragging:bool = false
+var firstMove:bool = true
 
 func init(tile):
 	setOnTile(tile)
@@ -11,11 +12,11 @@ func init(tile):
 	return self
 	
 func setPiece(pieceScript:Script):
-	var _onTile = onTile
+	# This would reset all variables, including firstMove
+	var _onTile = onTile # Remember tile
 	self.set_script(pieceScript)
 	self.onTile = _onTile
 	setTexture()
-#	validTiles = _validTiles
 	update_valid_tiles()
 	
 func _process(delta):
@@ -25,7 +26,6 @@ func _process(delta):
 			isDragging = false
 		
 func _ready():
-	print("Added Box")
 	custom_minimum_size = CONSTANTS.TILE_SIZE
 	$pieceSprite.custom_minimum_size = custom_minimum_size
 #	update_minimum_size()
@@ -81,6 +81,7 @@ func setOnTile(tile:ChessTile):
 		onTile.piece = null
 	onTile = tile
 	tile.piece = self
+	firstMove = false
 
 func setTexture():
 	pass
