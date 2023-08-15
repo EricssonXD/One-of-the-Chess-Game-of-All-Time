@@ -9,7 +9,7 @@ func  _init():
 
 func get_valid_tiles():
 	var tile = onTile.neighbouringTiles[Vector2(0,forward)]
-	if tile!= null:
+	if tile!= null && tile.piece == null:
 		setTileValid(tile)
 		if firstMove && tile.piece == null:
 			var extraTile = tile.neighbouringTiles[Vector2(0,forward)]

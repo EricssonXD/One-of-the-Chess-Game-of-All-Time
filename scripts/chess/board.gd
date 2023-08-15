@@ -44,6 +44,9 @@ func addPiece(cords:Vector2, playerID:int,script:Script = null) -> ChessPiece:
 func _process(_delta):
 	pass
 	
+func startGame():
+	ChessGlobal.inGame = true
+	
 func setupBoard():
 	# White Pieces
 	addPiece(Vector2(0,0),0,load("res://scripts/chess/pieces/rook.gd"))

@@ -2,6 +2,9 @@ extends Node
 
 var board: Dictionary = {}
 var dragging: bool = false
+
+var inGame: bool = false
+
 var players: PackedStringArray = []
 
 # Which player's turn it is
