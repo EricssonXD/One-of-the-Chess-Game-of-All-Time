@@ -17,11 +17,11 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-CONSTANTS="*res://scripts/misc/constants.gd"
+CONSTANTS="*res://scripts/autoLoad/constants.gd"
 PlayFabManager="*res://addons/godot-playfab/PlayFabManager.gd"
-Global="*res://scripts/misc/Global.gd"
-ChessGlobal="*res://scripts/chess/chess_global.gd"
-SignalManager="*res://scripts/misc/signal_manager.gd"
+Global="*res://scripts/autoLoad/Global.gd"
+ChessGlobal="*res://scripts/autoLoad/chess_global.gd"
+SignalManager="*res://scripts/autoLoad/signal_manager.gd"
 
 [display]
 

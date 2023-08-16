@@ -8,6 +8,9 @@ var firstMove:bool = true
 var playerID:int 
 var type = CONSTANTS.TYPE.Debug
 
+
+
+
 func init(tile, playerId):
 	setOnTile(tile)
 	self.playerID = playerId

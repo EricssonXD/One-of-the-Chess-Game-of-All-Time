@@ -45,7 +45,7 @@ func addPiece(cords:Vector2, playerID:int,script:Script = null) -> ChessPiece:
 func _process(_delta):
 	pass
 	
-func onEndTurn(playerID:int):
+func onEndTurn(_playerID:int):
 	ChessGlobal.playerTurn = (ChessGlobal.playerTurn + 1) % ChessGlobal.players.size()
 	pass
 
@@ -54,15 +54,15 @@ func setupBoard():
 	ChessGlobal.players.append("White")
 	ChessGlobal.players.append("Black")
 	# White Pieces
-	addPiece(Vector2(0,0),0,load("res://scripts/chess/pieces/rook.gd"))
-	addPiece(Vector2(1,0),0,load("res://scripts/chess/pieces/knight.gd"))
-	addPiece(Vector2(2,0),0,load("res://scripts/chess/pieces/bishop.gd"))
-	addPiece(Vector2(3,0),0,load("res://scripts/chess/pieces/queen.gd"))
-	addPiece(Vector2(4,0),0,load("res://scripts/chess/pieces/king.gd"))
-	addPiece(Vector2(7,1),0,load("res://scripts/chess/pieces/pawn.gd"))
+	addPiece(Vector2(0,0), 0, Assets.Piece.Rook)
+	addPiece(Vector2(1,0), 0, Assets.Piece.Knight)
+	addPiece(Vector2(2,0), 0, Assets.Piece.Bishop)
+	addPiece(Vector2(3,0), 0, load("res://scripts/chess/pieces/queen.gd"))
+	addPiece(Vector2(4,0), 0, load("res://scripts/chess/pieces/king.gd"))
+	addPiece(Vector2(7,1), 0, load("res://scripts/chess/pieces/pawn.gd"))
 	# Black Pieces
-	addPiece(Vector2(4,7),1,load("res://scripts/chess/pieces/debug.gd"))
-	addPiece(Vector2(7,6),1,load("res://scripts/chess/pieces/pawn.gd")).forward = -1
+	addPiece(Vector2(4,7), 1, load("res://scripts/chess/pieces/debug.gd"))
+	addPiece(Vector2(7,6), 1, load("res://scripts/chess/pieces/pawn.gd")).forward = -1
 	setupPromotionTiles()
 
 func setupPromotionTiles():
