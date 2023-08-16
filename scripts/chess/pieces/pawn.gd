@@ -2,6 +2,7 @@ extends ChessPiece
 
 
 var forward: int = 1
+var canBeEnpassant: bool = false
 
 func  _init():
 	super._init()
@@ -9,9 +10,9 @@ func  _init():
 
 func get_valid_tiles():
 	var tile = onTile.neighbouringTiles[Vector2(0,forward)]
-	if tile!= null:
+	if tile!= null and tile.piece == null:
 		setTileValid(tile)
-		if firstMove && tile.piece == null:
+		if firstMove:
 			var extraTile = tile.neighbouringTiles[Vector2(0,forward)]
 			if extraTile!= null:
 				setTileValid(extraTile)
@@ -34,7 +35,9 @@ func promote():
 	self.firstMove = false
 #	self.playerID = playerID
 
-
+func enpassant():
+	pass
+	
 func setTexture():
 	$pieceSprite.texture = load("res://assets/pieces/white/ches.png")
 	

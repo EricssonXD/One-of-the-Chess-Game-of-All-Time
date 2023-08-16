@@ -21,6 +21,7 @@ CONSTANTS="*res://scripts/misc/constants.gd"
 PlayFabManager="*res://addons/godot-playfab/PlayFabManager.gd"
 Global="*res://scripts/misc/Global.gd"
 ChessGlobal="*res://scripts/chess/chess_global.gd"
+SignalManager="*res://scripts/misc/signal_manager.gd"
 
 [display]
 

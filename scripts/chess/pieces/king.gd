@@ -8,7 +8,7 @@ func get_valid_tiles():
 	for i in onTile.neighbouringTiles.values():
 		if i != null:
 			setTileValid(i)
-	
+
 func recur(tile: ChessTile, direction: Vector2, blocked:bool = false):
 	if tile == null:
 		return
@@ -17,7 +17,8 @@ func recur(tile: ChessTile, direction: Vector2, blocked:bool = false):
 	if tile.piece != null and tile.piece != self:
 		blocked = true
 	recur(tile.neighbouringTiles[direction], direction, blocked)
-	
+
+
 
 
 func setTexture():

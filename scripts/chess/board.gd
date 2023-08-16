@@ -6,7 +6,8 @@ func _ready():
 	$BoxContainer.custom_minimum_size = CONSTANTS.TILE_SIZE * CONSTANTS.BOARD_DIMENSIONS + CONSTANTS.BOARD_OFFSET*2
 	initTiles()
 	setupBoard()
-
+	SignalManager.connect("whenEndTurn", onEndTurn)
+	
 func initTiles() -> void:
 	for y in range(CONSTANTS.BOARD_DIMENSIONS.y):
 		for x in range(CONSTANTS.BOARD_DIMENSIONS.x):
@@ -44,7 +45,14 @@ func addPiece(cords:Vector2, playerID:int,script:Script = null) -> ChessPiece:
 func _process(_delta):
 	pass
 	
+func onEndTurn(playerID:int):
+	ChessGlobal.playerTurn = (ChessGlobal.playerTurn + 1) % ChessGlobal.players.size()
+	pass
+
 func setupBoard():
+	# Add Players
+	ChessGlobal.players.append("White")
+	ChessGlobal.players.append("Black")
 	# White Pieces
 	addPiece(Vector2(0,0),0,load("res://scripts/chess/pieces/rook.gd"))
 	addPiece(Vector2(1,0),0,load("res://scripts/chess/pieces/knight.gd"))
@@ -53,10 +61,10 @@ func setupBoard():
 	addPiece(Vector2(4,0),0,load("res://scripts/chess/pieces/king.gd"))
 	addPiece(Vector2(7,1),0,load("res://scripts/chess/pieces/pawn.gd"))
 	# Black Pieces
-	addPiece(Vector2(4,7),1)
+	addPiece(Vector2(4,7),1,load("res://scripts/chess/pieces/debug.gd"))
 	addPiece(Vector2(7,6),1,load("res://scripts/chess/pieces/pawn.gd")).forward = -1
 	setupPromotionTiles()
-	
+
 func setupPromotionTiles():
 	for i in ChessGlobal.board.values():
 		if i.cords.y == 0:

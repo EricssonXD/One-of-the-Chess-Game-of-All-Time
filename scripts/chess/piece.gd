@@ -16,10 +16,11 @@ func init(tile, playerId):
 	
 func setPiece(pieceScript:Script):
 	# This would reset all variables, including firstMove
+	var _playerID = playerID
 	var _onTile = onTile # Remember tile
 	self.set_script(pieceScript)
 	self.onTile = _onTile
-	self.playerID = playerID
+	self.playerID = _playerID
 	setTexture()
 	update_valid_tiles()
 	
@@ -68,8 +69,7 @@ func update_valid_tiles():
 	get_valid_tiles()
 	
 func get_valid_tiles():
-	for i in ChessGlobal.board.values():
-		setTileValid(i)
+	pass
 
 func setTileValid(tile:ChessTile, friendlyFire:bool = false):
 	if tile.piece != null:
@@ -88,9 +88,10 @@ func hide_valid_indicators():
 func setOnTile(tile:ChessTile):
 	if onTile != null:
 		onTile.piece = null
+		firstMove = false		
+		SignalManager.endTurn(self.playerID)
 	onTile = tile
 	tile.piece = self
-	firstMove = false
 
 func setTexture():
 	pass
