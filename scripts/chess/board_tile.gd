@@ -7,6 +7,7 @@ var attackedBy: Dictionary = {}
 var piece: ChessPiece
 var promotion: PackedInt32Array = []
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	custom_minimum_size = CONSTANTS.TILE_SIZE

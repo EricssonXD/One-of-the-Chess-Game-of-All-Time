@@ -1,6 +1,7 @@
 extends Node
 
 var board: Dictionary = {}
+var pieces: Dictionary = {}
 var dragging: bool = false
 
 var inGame: bool = false

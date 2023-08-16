@@ -25,7 +25,7 @@ func setPiece(pieceScript:Script):
 	self.onTile = _onTile
 	self.playerID = _playerID
 	setTexture()
-	update_valid_tiles()
+#	update_valid_tiles()
 	
 func _process(_delta):
 	if Input.is_action_just_released("left_mouse_button"):
@@ -43,7 +43,7 @@ func _get_drag_data(_at_position):
 	if ChessGlobal.playerTurn != playerID:
 		return null
 	isDragging = true
-	update_valid_tiles()
+#	update_valid_tiles()
 	show_valid_indicators()
 	# Add Drag Preview
 	var dragPreview = ChessGlobal.res_dragPreview.instantiate()
@@ -64,10 +64,17 @@ func _can_drop_data(at_position, data):
 # Pass through data to tile
 func _drop_data(at_position, data):
 	onTile._drop_data(at_position, data)
-	queue_free()
+	self.remove()
 	pass
 
+func remove():
+	queue_free()
+	ChessGlobal.pieces.get(playerID).erase(self)
+
 func update_valid_tiles():
+	for i in validTiles.values():
+		var b = i.attackedBy[playerID] as Array
+		b.erase(self)
 	validTiles.clear()
 	get_valid_tiles()
 	
@@ -79,7 +86,10 @@ func setTileValid(tile:ChessTile, friendlyFire:bool = false):
 		if tile.piece.playerID == playerID and !friendlyFire:
 			return
 	validTiles[tile.cords] = tile
-
+	if !tile.attackedBy.has(playerID):
+		tile.attackedBy[playerID] = []
+	tile.attackedBy[playerID].append(self)
+	
 func show_valid_indicators():
 	for i in validTiles.values():
 		i.showIndicator()

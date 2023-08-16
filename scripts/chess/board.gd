@@ -34,21 +34,20 @@ func snappedPosition(snapPos:Vector2)-> Vector2:
 		
 	return snapped(snapPos + CONSTANTS.BOARD_OFFSET, CONSTANTS.TILE_SIZE) - CONSTANTS.TILE_SIZE + CONSTANTS.BOARD_OFFSET + position
 
-func addPiece(cords:Vector2, playerID:int,script:Script = null) -> ChessPiece:
-	var piece:ChessPiece = ChessGlobal.res_debugPiece.instantiate().init(ChessGlobal.board[cords], playerID)
-	if script != null:
-		piece.setPiece(script)
-#	piece.set_name(str("Rook"))
-	add_child(piece)
-	return piece
 
 func _process(_delta):
 	pass
 	
 func onEndTurn(_playerID:int):
 	ChessGlobal.playerTurn = (ChessGlobal.playerTurn + 1) % ChessGlobal.players.size()
+	updateAllValidTiles()
 	pass
 
+func updateAllValidTiles():
+	for player in ChessGlobal.pieces.values():
+		for piece in player:
+			(piece as ChessPiece).update_valid_tiles()
+			
 func setupBoard():
 	# Add Players
 	ChessGlobal.players.append("White")
@@ -64,6 +63,7 @@ func setupBoard():
 	addPiece(Vector2(4,7), 1, load("res://scripts/chess/pieces/debug.gd"))
 	addPiece(Vector2(7,6), 1, load("res://scripts/chess/pieces/pawn.gd")).forward = -1
 	setupPromotionTiles()
+	updateAllValidTiles()
 
 func setupPromotionTiles():
 	for i in ChessGlobal.board.values():
@@ -72,3 +72,14 @@ func setupPromotionTiles():
 			continue
 		if i.cords.y == CONSTANTS.BOARD_DIMENSIONS.y -1:
 			i.promotion.append(0)
+
+func addPiece(cords:Vector2, playerID:int,script:Script = null) -> ChessPiece:
+	var piece:ChessPiece = ChessGlobal.res_debugPiece.instantiate().init(ChessGlobal.board[cords], playerID)
+	if script != null:
+		piece.setPiece(script)
+#	piece.set_name(str("Rook"))
+	add_child(piece)
+	if !ChessGlobal.pieces.has(playerID):
+		ChessGlobal.pieces[playerID] = []
+	ChessGlobal.pieces[playerID].append(piece)
+	return piece
