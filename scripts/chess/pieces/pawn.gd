@@ -39,5 +39,5 @@ func enpassant():
 	pass
 	
 func setTexture():
-	$pieceSprite.texture = load("res://assets/pieces/white/pawn.png")
+	$pieceSprite.texture = Assets.Textures.Pawn[playerID]
 	

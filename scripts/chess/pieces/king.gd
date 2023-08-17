@@ -23,7 +23,7 @@ func checked():
 	pass
 
 func setTexture():
-	$pieceSprite.texture = load("res://assets/pieces/white/king.png")
+	$pieceSprite.texture = Assets.Textures.King[playerID]
 	
 func _ready():
 	super._ready()

@@ -22,5 +22,5 @@ func recur(tile: ChessTile, direction: Vector2, blocked:bool = false):
 
 
 func setTexture():
-	$pieceSprite.texture = load("res://assets/pieces/white/bishop.png")
+	$pieceSprite.texture = Assets.Textures.Bishop[playerID]
 	
