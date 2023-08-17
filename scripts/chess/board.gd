@@ -6,7 +6,7 @@ func _ready():
 	$BoxContainer.custom_minimum_size = CONSTANTS.TILE_SIZE * CONSTANTS.BOARD_DIMENSIONS + CONSTANTS.BOARD_OFFSET*2
 	initTiles()
 	setupBoard()
-	SignalManager.connect("whenEndTurn", onEndTurn)
+	SignalManager.whenEndTurn.connect(onEndTurn)
 	
 func initTiles() -> void:
 	for y in range(CONSTANTS.BOARD_DIMENSIONS.y):
@@ -41,6 +41,10 @@ func _process(_delta):
 func onEndTurn(_playerID:int):
 	ChessGlobal.playerTurn = (ChessGlobal.playerTurn + 1) % ChessGlobal.players.size()
 	updateAllValidTiles()
+	for player in ChessGlobal.pieces.values():
+		for piece in player:
+			if (piece as ChessPiece).type == CONSTANTS.TYPE.King:
+				(piece as ChessPiece).update_valid_tiles()
 	pass
 
 func updateAllValidTiles():
@@ -56,12 +60,12 @@ func setupBoard():
 	addPiece(Vector2(0,0), 0, Assets.Piece.Rook)
 	addPiece(Vector2(1,0), 0, Assets.Piece.Knight)
 	addPiece(Vector2(2,0), 0, Assets.Piece.Bishop)
-	addPiece(Vector2(3,0), 0, load("res://scripts/chess/pieces/queen.gd"))
-	addPiece(Vector2(4,0), 0, load("res://scripts/chess/pieces/king.gd"))
-	addPiece(Vector2(7,1), 0, load("res://scripts/chess/pieces/pawn.gd"))
+	addPiece(Vector2(3,0), 0, Assets.Piece.Queen)
+	addPiece(Vector2(4,0), 0, Assets.Piece.King)
+	addPiece(Vector2(7,1), 0, Assets.Piece.Pawn)
 	# Black Pieces
-	addPiece(Vector2(4,7), 1, load("res://scripts/chess/pieces/debug.gd"))
-	addPiece(Vector2(7,6), 1, load("res://scripts/chess/pieces/pawn.gd")).forward = -1
+	addPiece(Vector2(4,7), 1, Assets.Piece.Queen)
+	addPiece(Vector2(7,6), 1, Assets.Piece.Pawn).forward = -1
 	setupPromotionTiles()
 	updateAllValidTiles()
 

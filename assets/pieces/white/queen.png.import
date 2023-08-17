@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cq5eaq32wej31"
-path="res://.godot/imported/whores.png-92f021d5ebe824d99fbdd5207d3bc298.ctex"
+uid="uid://bne3bl5a7xuya"
+path="res://.godot/imported/queen.png-e96ac2486b6cd84b9f97493c59f39bd1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/pieces/white/whores.png"
-dest_files=["res://.godot/imported/whores.png-92f021d5ebe824d99fbdd5207d3bc298.ctex"]
+source_file="res://assets/pieces/white/queen.png"
+dest_files=["res://.godot/imported/queen.png-e96ac2486b6cd84b9f97493c59f39bd1.ctex"]
 
 [params]
 

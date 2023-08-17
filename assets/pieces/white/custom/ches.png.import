@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://db40hso2fpiah"
-path="res://.godot/imported/ches.png-ac3b50c3cf941702679724515f8e1377.ctex"
+path="res://.godot/imported/ches.png-0605d6a78d5883b8b7904c030ce4b715.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/pieces/white/ches.png"
-dest_files=["res://.godot/imported/ches.png-ac3b50c3cf941702679724515f8e1377.ctex"]
+source_file="res://assets/pieces/white/custom/ches.png"
+dest_files=["res://.godot/imported/ches.png-0605d6a78d5883b8b7904c030ce4b715.ctex"]
 
 [params]
 

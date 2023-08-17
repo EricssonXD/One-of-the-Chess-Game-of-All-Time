@@ -39,5 +39,5 @@ func enpassant():
 	pass
 	
 func setTexture():
-	$pieceSprite.texture = load("res://assets/pieces/white/ches.png")
+	$pieceSprite.texture = load("res://assets/pieces/white/pawn.png")
 	

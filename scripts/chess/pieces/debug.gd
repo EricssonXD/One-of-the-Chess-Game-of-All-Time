@@ -11,5 +11,5 @@ func get_valid_tiles():
 
 
 func setTexture():
-	$pieceSprite.texture = load("res://assets/pieces/white/ches-criminal.png")
+	$pieceSprite.texture = load("res://assets/pieces/white/custom/ches-criminal.png")
 	

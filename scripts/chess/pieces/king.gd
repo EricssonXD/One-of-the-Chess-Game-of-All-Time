@@ -23,5 +23,14 @@ func checked():
 	pass
 
 func setTexture():
-	$pieceSprite.texture = load("res://assets/pieces/white/king_with_gun_haha_funny_lmao_school_shoote.png")
+	$pieceSprite.texture = load("res://assets/pieces/white/king.png")
 	
+func _ready():
+	super._ready()
+	SignalManager.checked.connect(whenChecked)
+
+func whenChecked(id:int):
+	if id != playerID:
+		return
+	print("I am being checked")
+		

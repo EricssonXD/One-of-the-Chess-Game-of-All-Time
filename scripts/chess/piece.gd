@@ -77,7 +77,8 @@ func update_valid_tiles():
 		b.erase(self)
 	validTiles.clear()
 	get_valid_tiles()
-	
+
+
 func get_valid_tiles():
 	pass
 
@@ -85,6 +86,8 @@ func setTileValid(tile:ChessTile, friendlyFire:bool = false):
 	if tile.piece != null:
 		if tile.piece.playerID == playerID and !friendlyFire:
 			return
+		if tile.piece.type == CONSTANTS.TYPE.King:
+			SignalManager.checked.emit(tile.piece.playerID)
 	validTiles[tile.cords] = tile
 	if !tile.attackedBy.has(playerID):
 		tile.attackedBy[playerID] = []

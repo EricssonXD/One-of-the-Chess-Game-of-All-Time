@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://w8556bb2bgom"
-path="res://.godot/imported/ches-criminal.png-729983f5d1d2c693b8df21c11c01aa40.ctex"
+uid="uid://cgik8vr8edn5q"
+path="res://.godot/imported/pieces_white_1.png-e5d325487c0810f456f29b818bde4cc9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/pieces/white/ches-criminal.png"
-dest_files=["res://.godot/imported/ches-criminal.png-729983f5d1d2c693b8df21c11c01aa40.ctex"]
+source_file="res://assets/pieces/white/pieces_white_1.png"
+dest_files=["res://.godot/imported/pieces_white_1.png-e5d325487c0810f456f29b818bde4cc9.ctex"]
 
 [params]
 

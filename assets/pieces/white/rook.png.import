@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5rgfjnmo5pbn"
-path="res://.godot/imported/king.png-6a9ae16327cfaacb5501ed279b039e3d.ctex"
+uid="uid://dedeq3a54ijpr"
+path="res://.godot/imported/rook.png-677634047dd4d1ebede50ffe42e8f80e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/pieces/white/normal/king.png"
-dest_files=["res://.godot/imported/king.png-6a9ae16327cfaacb5501ed279b039e3d.ctex"]
+source_file="res://assets/pieces/white/rook.png"
+dest_files=["res://.godot/imported/rook.png-677634047dd4d1ebede50ffe42e8f80e.ctex"]
 
 [params]
 
