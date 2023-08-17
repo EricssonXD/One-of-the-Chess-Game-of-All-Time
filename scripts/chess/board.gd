@@ -48,10 +48,15 @@ func onEndTurn(_playerID:int):
 	pass
 
 func updateAllValidTiles():
+	var kings = []
 	for player in ChessGlobal.pieces.values():
 		for piece in player:
 			(piece as ChessPiece).update_valid_tiles()
-			
+			if (piece as ChessPiece).type == CONSTANTS.TYPE.King:
+				kings.append(piece)
+	for k in kings:
+		k.update_valid_tiles()
+		
 func setupBoard():
 	# Add Players
 	ChessGlobal.players.append("White")
@@ -68,6 +73,7 @@ func setupBoard():
 	addPiece(Vector2(7,6), 1, Assets.Piece.Pawn).forward = -1
 	setupPromotionTiles()
 	updateAllValidTiles()
+	ChessGlobal.inGame = true
 
 func setupPromotionTiles():
 	for i in ChessGlobal.board.values():
@@ -78,7 +84,7 @@ func setupPromotionTiles():
 			i.promotion.append(0)
 
 func addPiece(cords:Vector2, playerID:int,script:Script = null) -> ChessPiece:
-	var piece:ChessPiece = ChessGlobal.res_debugPiece.instantiate().init(ChessGlobal.board[cords], playerID)
+	var piece:ChessPiece = Assets.Piece.Base.instantiate().init(ChessGlobal.board[cords], playerID)
 	if script != null:
 		piece.setPiece(script)
 #	piece.set_name(str("Rook"))

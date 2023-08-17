@@ -1,21 +1,24 @@
 extends ChessPiece
 
+var dangerous = []
+
 func  _init():
 	super._init()
 	self.type = CONSTANTS.TYPE.King
 
 func _get_drag_data(at_position):
 	update_valid_tiles()
-	return super._get_drag_data(at_position)
+	var a = super._get_drag_data(at_position)
+	return a
 
 func get_valid_tiles():
 	for i in onTile.neighbouringTiles.values():
 		if i != null:
 			var v = true
 			for player in i.attackedBy.keys():
-				if player != playerID:
+				if player != playerID && !i.attackedBy[player].is_empty():
 					v = false
-					continue
+					break
 			if v:
 				setTileValid(i)
 
@@ -33,4 +36,3 @@ func whenChecked(id:int):
 	if id != playerID:
 		return
 	print("I am being checked")
-		

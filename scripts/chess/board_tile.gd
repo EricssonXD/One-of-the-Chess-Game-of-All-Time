@@ -49,6 +49,9 @@ func _drop_data(_at_position, data):
 func _on_debug_tile_gui_input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		print(cords)
+		for i in attackedBy.values():
+			for j in i:
+				print(j.type)
 	pass
 
 func getSnappedPosition() -> Vector2:

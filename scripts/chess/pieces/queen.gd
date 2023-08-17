@@ -18,7 +18,8 @@ func recur(tile: ChessTile, direction: Vector2, blocked:bool = false):
 	if !blocked:
 		setTileValid(tile)
 	if tile.piece != null and tile.piece != self:
-		blocked = true
+		if tile.piece.type != CONSTANTS.TYPE.King:
+			blocked = true
 	recur(tile.neighbouringTiles[direction], direction, blocked)
 	
 

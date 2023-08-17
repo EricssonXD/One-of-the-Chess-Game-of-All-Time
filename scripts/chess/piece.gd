@@ -6,7 +6,7 @@ var validTiles:Dictionary = {}
 var isDragging:bool = false
 var firstMove:bool = true
 var playerID:int 
-var type = CONSTANTS.TYPE.Debug
+var type = CONSTANTS.TYPE.Base
 
 
 func init(tile, playerId):
@@ -103,9 +103,10 @@ func setOnTile(tile:ChessTile):
 	if onTile != null:
 		onTile.piece = null
 		firstMove = false		
-		SignalManager.endTurn(self.playerID)
 	onTile = tile
 	tile.piece = self
+	if ChessGlobal.inGame:
+		SignalManager.endTurn(self.playerID)
 
 func setTexture():
 	pass

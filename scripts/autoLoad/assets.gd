@@ -2,6 +2,7 @@ extends Node
 class_name Assets
 
 class Piece:
+	const Base = preload("res://prefab/chess/piece.tscn")
 	const Rook = preload("res://scripts/chess/pieces/rook.gd")
 	const Bishop = preload("res://scripts/chess/pieces/bishop.gd")
 	const Knight = preload("res://scripts/chess/pieces/knight.gd")
