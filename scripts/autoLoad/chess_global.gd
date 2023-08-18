@@ -17,4 +17,7 @@ class PlayerInfo:
     var id: int
     var pieces: Array[ChessPiece] = []
     var blockCheck: Array[ChessTile] = []
-    
+
+
+func createPlayer():
+    var newPlayer = PlayerInfo.new()
