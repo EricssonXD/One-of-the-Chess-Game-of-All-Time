@@ -12,22 +12,22 @@ func get_valid_tiles():
 
 func recur(tile: ChessTile, direction: Vector2, blocked:bool = false):
 	if tile == null:
-		return
+		return -1
 	if !blocked:
 		setTileValid(tile)
-	var blockCheck:bool = false
+	var blockCheck:int = -1
 	if tile.piece != null and tile.piece != self:
-		if tile.piece.type != CONSTANTS.TYPE.King:
+		if !(tile.piece.type == CONSTANTS.TYPE.King and tile.piece.playerID != playerID):
 			blocked = true
 		else:
-			blockCheck = true
-	blockCheck = blockCheck or recur(tile.neighbouringTiles[direction], direction, blocked)
-	if blockCheck:
-		ChessGlobal.blockCheck.append(tile)
+			blockCheck = tile.piece.playerID
+	blockCheck = recur(tile.neighbouringTiles[direction], direction, blocked)
+	if blockCheck != -1:
+		ChessGlobal.players[blockCheck].append(tile)
 	return blockCheck
 
 
 func setTexture():
-	$pieceSprite.texture = Assets.Textures.Queen[playerID]
+	$pieceSprite.texture = Assets.Textures.Rook[playerID]
 
 	

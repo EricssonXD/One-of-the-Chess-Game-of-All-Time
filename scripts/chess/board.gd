@@ -38,19 +38,28 @@ func snappedPosition(snapPos:Vector2)-> Vector2:
 func _process(_delta):
 	pass
 	
-func onEndTurn(_playerID:int):
+func onEndTurn(playerID:int):
+	if ChessGlobal.players[playerID].isChecked:
+		ChessGlobal.players[playerID].isChecked = false
+		ChessGlobal.players[playerID].blockCheck.clear()
 	ChessGlobal.playerTurn = (ChessGlobal.playerTurn + 1) % ChessGlobal.players.size()
 	updateAllValidTiles()
-	for player in ChessGlobal.pieces.values():
-		for piece in player:
+	for player in ChessGlobal.players:
+		for piece in player.pieces:
 			if (piece as ChessPiece).type == CONSTANTS.TYPE.King:
 				(piece as ChessPiece).update_valid_tiles()
+	if ChessGlobal.players[ChessGlobal.playerTurn].isChecked:
+		print(ChessGlobal.playerTurn)
+		for p in ChessGlobal.players[ChessGlobal.playerTurn].pieces:
+			for v in p.validTiles.values():
+				if !(v in ChessGlobal.players[ChessGlobal.playerTurn].blockCheck):
+					p.validTiles.erase(v.cords)
 	pass
 
 func updateAllValidTiles():
 	var kings = []
-	for player in ChessGlobal.pieces.values():
-		for piece in player:
+	for player in ChessGlobal.players:
+		for piece in player.pieces:
 			(piece as ChessPiece).update_valid_tiles()
 			if (piece as ChessPiece).type == CONSTANTS.TYPE.King:
 				kings.append(piece)
@@ -59,8 +68,8 @@ func updateAllValidTiles():
 		
 func setupBoard():
 	# Add Players
-	ChessGlobal.players.append("White")
-	ChessGlobal.players.append("Black")
+	ChessGlobal.createPlayer("White")
+	ChessGlobal.createPlayer("Black")
 	# White Pieces
 	addPiece(Vector2(0,0), 0, Assets.Piece.Rook)
 	addPiece(Vector2(1,0), 0, Assets.Piece.Knight)
@@ -70,6 +79,7 @@ func setupBoard():
 	addPiece(Vector2(7,1), 0, Assets.Piece.Pawn)
 	# Black Pieces
 	addPiece(Vector2(4,7), 1, Assets.Piece.Queen)
+	addPiece(Vector2(3,7), 1, Assets.Piece.King)
 	addPiece(Vector2(7,6), 1, Assets.Piece.Pawn).forward = -1
 	setupPromotionTiles()
 	updateAllValidTiles()
@@ -89,7 +99,5 @@ func addPiece(cords:Vector2, playerID:int,script:Script = null) -> ChessPiece:
 		piece.setPiece(script)
 #	piece.set_name(str("Rook"))
 	add_child(piece)
-	if !ChessGlobal.pieces.has(playerID):
-		ChessGlobal.pieces[playerID] = []
-	ChessGlobal.pieces[playerID].append(piece)
+	ChessGlobal.players[playerID].pieces.append(piece)
 	return piece

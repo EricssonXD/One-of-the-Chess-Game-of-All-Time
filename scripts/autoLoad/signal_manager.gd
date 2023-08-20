@@ -7,4 +7,5 @@ signal checked(playerID:int)
 
 
 func endTurn(playerID:int):
+	ChessGlobal.players[playerID].isChecked = true
 	whenEndTurn.emit(playerID)

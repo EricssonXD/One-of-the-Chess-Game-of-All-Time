@@ -53,7 +53,7 @@ func _on_debug_tile_gui_input(event):
 			for j in i:
 				print(j.type)
 	pass
-
+	
 func getSnappedPosition() -> Vector2:
 	return get_parent().snappedPosition(position)
 

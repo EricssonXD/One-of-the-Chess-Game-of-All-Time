@@ -34,5 +34,8 @@ func _ready():
 
 func whenChecked(id:int):
 	if id != playerID:
+		print("Yo what?",str(playerID))
+		ChessGlobal.players[id].isChecked = true
+		
 		return
-	print("I am being checked")
+#	print("I am being checked")

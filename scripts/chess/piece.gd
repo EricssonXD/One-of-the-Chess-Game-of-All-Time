@@ -67,7 +67,7 @@ func _drop_data(at_position, data):
 
 func remove():
 	queue_free()
-	ChessGlobal.pieces.get(playerID).erase(self)
+	ChessGlobal.players[playerID].pieces.erase(self)
 
 func update_valid_tiles():
 	for i in validTiles.values():
@@ -75,6 +75,11 @@ func update_valid_tiles():
 		b.erase(self)
 	validTiles.clear()
 	get_valid_tiles()
+#	if ChessGlobal.players[playerID].isChecked == true:
+#		for v in validTiles.values():
+#			if !(v in ChessGlobal.players[playerID].blockCheck):
+#				validTiles.erase(v.cords)
+#				print(v.cords)
 
 
 func get_valid_tiles():
