@@ -12,13 +12,20 @@ func get_valid_tiles():
 	
 func recur(tile: ChessTile, direction: Vector2, blocked:bool = false):
 	if tile == null:
-		return
+		return -1
 	if !blocked:
 		setTileValid(tile)
+	var blockCheck:int = -1
 	if tile.piece != null and tile.piece != self:
-		if !(tile.piece.type == CONSTANTS.TYPE.King and tile.piece.playerID != playerID):
+		if tile.piece.type == CONSTANTS.TYPE.King and tile.piece.playerID != playerID:
+			blockCheck = tile.piece.playerID
+		else:
 			blocked = true
-	recur(tile.neighbouringTiles[direction], direction, blocked)
+			
+	blockCheck = max(recur(tile.neighbouringTiles[direction], direction, blocked),blockCheck)
+	if blockCheck != -1:
+		ChessGlobal.players[blockCheck].blockCheck.append(tile)
+	return blockCheck
 	
 
 

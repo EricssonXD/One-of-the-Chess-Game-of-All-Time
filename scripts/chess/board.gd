@@ -7,7 +7,7 @@ func _ready():
 	initTiles()
 	setupBoard()
 	SignalManager.whenEndTurn.connect(onEndTurn)
-	
+
 func initTiles() -> void:
 	for y in range(CONSTANTS.BOARD_DIMENSIONS.y):
 		for x in range(CONSTANTS.BOARD_DIMENSIONS.x):
@@ -20,7 +20,7 @@ func initTiles() -> void:
 			ChessGlobal.board[Vector2(x,y)] = new_tile
 	for i in ChessGlobal.board.values():
 		i.set_neighbouringTiles()
-
+		
 func snappedPosition(snapPos:Vector2)-> Vector2:
 	if (snapPos.x<=CONSTANTS.BOARD_OFFSET.x):
 		snapPos.x = CONSTANTS.BOARD_OFFSET.x + position.x
@@ -44,10 +44,7 @@ func onEndTurn(playerID:int):
 		ChessGlobal.players[playerID].blockCheck.clear()
 	ChessGlobal.playerTurn = (ChessGlobal.playerTurn + 1) % ChessGlobal.players.size()
 	updateAllValidTiles()
-	for player in ChessGlobal.players:
-		for piece in player.pieces:
-			if (piece as ChessPiece).type == CONSTANTS.TYPE.King:
-				(piece as ChessPiece).update_valid_tiles()
+#	remove tiles that does not block check if the player next turn is checked
 	if ChessGlobal.players[ChessGlobal.playerTurn].isChecked:
 		print(ChessGlobal.playerTurn)
 		for p in ChessGlobal.players[ChessGlobal.playerTurn].pieces:
@@ -57,6 +54,10 @@ func onEndTurn(playerID:int):
 	pass
 
 func updateAllValidTiles():
+#	clear attacked by
+	for i in ChessGlobal.board.values():
+		i.attackedBy.clear()
+#	update every chess piece and at last update king
 	var kings = []
 	for player in ChessGlobal.players:
 		for piece in player.pieces:
@@ -78,12 +79,12 @@ func setupBoard():
 	addPiece(Vector2(4,0), 0, Assets.Piece.King)
 	addPiece(Vector2(7,1), 0, Assets.Piece.Pawn)
 	# Black Pieces
-	addPiece(Vector2(4,7), 1, Assets.Piece.Queen)
+	addPiece(Vector2(4,7), 1, Assets.Piece.Rook)
 	addPiece(Vector2(3,7), 1, Assets.Piece.King)
 	addPiece(Vector2(7,6), 1, Assets.Piece.Pawn).forward = -1
 	setupPromotionTiles()
-	updateAllValidTiles()
 	ChessGlobal.inGame = true
+	updateAllValidTiles()
 
 func setupPromotionTiles():
 	for i in ChessGlobal.board.values():

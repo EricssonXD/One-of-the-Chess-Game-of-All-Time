@@ -7,7 +7,7 @@ var isDragging:bool = false
 var firstMove:bool = true
 var playerID:int 
 var type = CONSTANTS.TYPE.Base
-
+var pinned:bool = false
 
 func init(tile, playerId):
 	setOnTile(tile)
@@ -30,18 +30,17 @@ func _process(_delta):
 		if isDragging:
 			hide_valid_indicators()
 			isDragging = false
-		
+
 func _ready():
 	custom_minimum_size = CONSTANTS.TILE_SIZE
 	$pieceSprite.custom_minimum_size = custom_minimum_size
-#	update_minimum_size()
 	set_process_input(true)
+	
 
 func _get_drag_data(_at_position):
-	if ChessGlobal.playerTurn != playerID:
+	if ChessGlobal.playerTurn != playerID :
 		return null
 	isDragging = true
-#	update_valid_tiles()
 	show_valid_indicators()
 	# Add Drag Preview
 	var dragPreview = ChessGlobal.res_dragPreview.instantiate()
@@ -70,9 +69,6 @@ func remove():
 	ChessGlobal.players[playerID].pieces.erase(self)
 
 func update_valid_tiles():
-	for i in validTiles.values():
-		var b = i.attackedBy[playerID] as Array
-		b.erase(self)
 	validTiles.clear()
 	get_valid_tiles()
 #	if ChessGlobal.players[playerID].isChecked == true:
@@ -94,7 +90,9 @@ func setTileValid(tile:ChessTile, friendlyFire:bool = false):
 	validTiles[tile.cords] = tile
 	if !tile.attackedBy.has(playerID):
 		tile.attackedBy[playerID] = []
-	tile.attackedBy[playerID].append(self)
+	
+	if !(tile.attackedBy[playerID] as Array).has(self):
+		tile.attackedBy[playerID].append(self)
 	
 func show_valid_indicators():
 	for i in validTiles.values():

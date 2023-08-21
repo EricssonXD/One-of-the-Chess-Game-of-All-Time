@@ -25,9 +25,9 @@ func get_valid_tiles():
 
 
 func setOnTile(tile:ChessTile):
-	super.setOnTile(tile)
 	if playerID in onTile.promotion:
 		promote()
+	super.setOnTile(tile)
 
 
 func promote():

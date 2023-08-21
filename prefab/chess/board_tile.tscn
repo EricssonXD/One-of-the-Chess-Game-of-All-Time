@@ -27,7 +27,6 @@ texture = ExtResource("2_vekey")
 expand_mode = 2
 
 [node name="DebugTile" type="TextureRect" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0)
 texture_filter = 1
 layout_mode = 2

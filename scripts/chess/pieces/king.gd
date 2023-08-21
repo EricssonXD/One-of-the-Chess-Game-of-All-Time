@@ -33,9 +33,8 @@ func _ready():
 	SignalManager.checked.connect(whenChecked)
 
 func whenChecked(id:int):
-	if id != playerID:
+	if id == playerID:
 		print("Yo what?",str(playerID))
 		ChessGlobal.players[id].isChecked = true
-		
 		return
 #	print("I am being checked")
